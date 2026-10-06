@@ -39,7 +39,10 @@ Dota2-Wiki/
 ├── heroes.html
 ├── items.html
 ├── esports.html
-├── css/
-├── js/
+├── styles.css
+├── script.js
+├── heroes.js 
 ├── images/
+├── heroes/
+├── fonts/
 └── README.md
