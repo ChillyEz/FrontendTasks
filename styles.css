@@ -138,6 +138,29 @@ header {
     backdrop-filter: blur(3px);
 }
 
+@media (max-width: 991.98px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    .site-brand {
+        width: 100%;
+    }
+
+    .bootstrap-navbar {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+}
 .site-brand {
     display: flex;
     align-items: center;
@@ -153,11 +176,6 @@ header {
     overflow-wrap: break-word;
 }
 
-header a {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-}
 
 
 a img.logo {
@@ -167,14 +185,14 @@ a img.logo {
 }
 
 
-
+/* 
 .navbar a{
     color : #e5e5e5;
     text-align: center;
     font-size: large;
     padding-block: 10px;
     text-decoration: none;
-}
+} */
 
 .navbar a:hover {
     transition: scale 0.3s ease-in-out;
