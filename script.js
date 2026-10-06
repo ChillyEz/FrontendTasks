@@ -2,99 +2,182 @@ import { heroes } from "./heroes.js";
 
 if (window.location.pathname.endsWith("heroes.html")) {
 
-const heroSections = document.querySelector("#hero-sections");
-const searchInput = document.querySelector("#hero-search");
-const attributeFilter = document.querySelector("#attribute-filter");
-const complexityFilter = document.querySelector("#complexity-filter");
+    const heroSections = document.querySelector("#hero-sections");
+    const searchInput = document.querySelector("#hero-search");
+    const attributeFilter = document.querySelector("#attribute-filter");
+    const complexityFilter = document.querySelector("#complexity-filter");
 
-const attributes = [
-    "Strength",
-    "Agility",
-    "Intelligence",
-    "Universal"
-];
-const attributeImages = {
-    Strength: "heroes/web-ui/strength.png",
-    Agility: "heroes/web-ui/agility.png",
-    Intelligence: "heroes/web-ui/intelligence.png",
-    Universal: "heroes/web-ui/universal.png"
-};
+    const roleChecks = document.querySelectorAll(".role-check");
+    const attackTypeChecks = document.querySelectorAll(".attack-type-check");
+    const clearRolesButton = document.querySelector("#clear-roles");
 
-function renderHeroes(heroList) {
 
-    heroSections.innerHTML = "";
+    const attributes = [
+        "Strength",
+        "Agility",
+        "Intelligence",
+        "Universal"
+    ];
 
-    attributes.forEach(function(attribute) {
+    const attributeImages = {
+        Strength: "heroes/web-ui/strength.png",
+        Agility: "heroes/web-ui/agility.png",
+        Intelligence: "heroes/web-ui/intelligence.png",
+        Universal: "heroes/web-ui/universal.png"
+    };
 
-        const section = document.createElement("section");
-        section.classList.add("hero-section");
 
-        section.innerHTML = `
-            <h3 class="attribute-title">
-            <img src="${attributeImages[attribute]}" alt="${attribute}">
-            <span>${attribute}</span>
-            </h3>
+    function renderHeroes(heroList) {
 
-            <div class="hero-gallery"></div>
-        `;
+        heroSections.innerHTML = "";
 
-        const gallery = section.querySelector(".hero-gallery");
+        attributes.forEach(function(attribute) {
 
-        heroList.forEach(function(hero) {
+            const section = document.createElement("section");
+            section.classList.add("hero-section");
 
-            if (hero.attribute === attribute) {
+            section.innerHTML = `
+                <h3 class="attribute-title">
+                    <img src="${attributeImages[attribute]}" alt="${attribute}">
+                    <span>${attribute}</span>
+                </h3>
 
-                const card = document.createElement("article");
-                card.classList.add("hero-card");
+                <div class="hero-gallery"></div>
+            `;
 
-                card.innerHTML = `
-                <img src="${hero.image}" alt="${hero.name}">
-                <div class="hero-caption">${hero.name}</div>
+            const gallery = section.querySelector(".hero-gallery");
+
+            heroList.forEach(function(hero) {
+
+                if (hero.attribute === attribute) {
+
+                    const card = document.createElement("article");
+                    card.classList.add("hero-card");
+
+                    card.innerHTML = `
+                        <img src="${hero.image}" alt="${hero.name}">
+                        <div class="hero-caption">${hero.name}</div>
                     `;
 
-                gallery.appendChild(card);
-            }
+                    gallery.appendChild(card);
+                }
+            });
+
+            heroSections.appendChild(section);
+        });
+    }
+
+
+    // Search
+    searchInput.addEventListener("input", filterHeroes);
+
+    // Attribute
+    attributeFilter.addEventListener("change", filterHeroes);
+
+    // Complexity
+    complexityFilter.addEventListener("change", filterHeroes);
+
+
+    // Roles
+    roleChecks.forEach(function(checkbox) {
+        checkbox.addEventListener("change", filterHeroes);
+    });
+
+
+    // Attack Type
+    attackTypeChecks.forEach(function(radio) {
+        radio.addEventListener("change", filterHeroes);
+    });
+
+
+    // Clear selected roles
+    clearRolesButton.addEventListener("click", function() {
+
+        roleChecks.forEach(function(checkbox) {
+            checkbox.checked = false;
         });
 
-        heroSections.appendChild(section);
-    });
-}
-searchInput.addEventListener("input", filterHeroes);
-
-attributeFilter.addEventListener("change", filterHeroes);
-
-complexityFilter.addEventListener("change", filterHeroes);
-
-renderHeroes(heroes);
-
-function filterHeroes() {
-
-    const searchText = searchInput.value.toLowerCase();
-    const selectedAttribute = attributeFilter.value;
-    const selectedComplexity = complexityFilter.value;
-
-    const filteredHeroes = heroes.filter(function(hero) {
-
-        const matchesSearch =
-            hero.name.toLowerCase().includes(searchText);
-
-        const matchesAttribute =
-            selectedAttribute === "All" ||
-            hero.attribute === selectedAttribute;
-
-        const matchesComplexity =
-            selectedComplexity === "All" ||
-            hero.complexity === Number(selectedComplexity);
-
-        return matchesSearch &&
-               matchesAttribute &&
-               matchesComplexity;
+        filterHeroes();
     });
 
-    renderHeroes(filteredHeroes);
-}
+
+    // Initial render
+    renderHeroes(heroes);
 
 
+    function filterHeroes() {
+
+        const searchText = searchInput.value.toLowerCase();
+        const selectedAttribute = attributeFilter.value;
+        const selectedComplexity = complexityFilter.value;
+
+
+        // Get selected roles
+        const selectedRoles = Array.from(roleChecks)
+            .filter(function(checkbox) {
+                return checkbox.checked;
+            })
+            .map(function(checkbox) {
+                return checkbox.value;
+            });
+
+
+        // Get selected attack type
+        const selectedAttackTypes = Array.from(attackTypeChecks)
+            .filter(function(checkbox) {
+                return checkbox.checked;
+            })
+            .map(function(checkbox) {
+                return checkbox.value;
+            });
+
+
+        const filteredHeroes = heroes.filter(function(hero) {
+
+
+            // Search
+            const matchesSearch =
+                hero.name.toLowerCase().includes(searchText);
+
+
+            // Attribute
+            const matchesAttribute =
+                selectedAttribute === "All" ||
+                hero.attribute === selectedAttribute;
+
+
+            // Complexity
+            const matchesComplexity =
+                selectedComplexity === "All" ||
+                hero.complexity === Number(selectedComplexity);
+
+
+            // Attack Type
+            const matchesAttackType =
+                selectedAttackTypes.length === 0 ||
+                selectedAttackTypes.every(function(attackType) {
+                    return hero.attackType.includes(attackType);
+                });
+
+
+            // Roles
+            const matchesRoles =
+                selectedRoles.length === 0 ||
+                selectedRoles.every(function(role) {
+                    return hero.roles.includes(role);
+                });
+
+
+            return matchesSearch &&
+                   matchesAttribute &&
+                   matchesComplexity &&
+                   matchesAttackType &&
+                   matchesRoles;
+        });
+
+
+        renderHeroes(filteredHeroes);
+    }
 }
 
 if (window.location.pathname.endsWith("index.html")) {
@@ -133,24 +216,25 @@ closeButtons.forEach(function (button) {
     });
 
 });
-
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 
-searchForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+if (searchForm && searchInput) {
 
-    const query = searchInput.value.trim().toLowerCase();
+    searchForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    if (query === "") {
-        return;
-    }
+        const query = searchInput.value.trim();
 
-    const text = document.body.innerText.toLowerCase();
+        if (query === "") {
+            return;
+        }
 
-    if (text.includes(query)) {
-        alert("Found: " + query);
-    } else {
-        alert("Nothing found");
-    }
-});
+        const found = window.find(query);
+
+        if (!found) {
+            alert("Nothing found");
+        }
+    });
+
+}

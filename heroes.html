@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/icon.png">
-    <script src="script.js defer"  type="module" defer></script>
+    <script src="script.js"  type="module" defer></script>
 </head>
 <body>
     <div class="page-shell">
@@ -46,19 +46,25 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="#about-us">About Us</a>
+                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="heroes.html">Heroes</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="#contact-form">Contact</a>
+                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="items.html">Items</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="esports.html">Esports</a>
                     </li>
                 </ul>
-                <form class="d-flex justify-content-end" role="search">
-                    <input class="form-control me-2" id="search-input" type="search" placeholder="Search" aria-label="Search"/>
+                <form class="d-flex justify-content-end" id="search-form" role="search">
+                    <input
+                        class="form-control me-2"
+                        id="search-input"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                    />
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 </div>
@@ -70,12 +76,16 @@
 
     <main>
         <div class="hero-filters">
-
-        <input
-            type="text"
-            id="hero-search"
-            placeholder="Search heroes...">
-
+    <label for="hero-search" class="visually-hidden">
+        Search heroes
+    </label>
+    <input
+        type="text"
+        id="hero-search"
+        placeholder="Search heroes...">
+    <label for="attribute-filter" class="visually-hidden">
+        Filter by attribute
+    </label>
     <select id="attribute-filter">
         <option value="All">All Attributes</option>
         <option value="Strength">Strength</option>
@@ -83,7 +93,9 @@
         <option value="Intelligence">Intelligence</option>
         <option value="Universal">Universal</option>
     </select>
-
+    <label for="complexity-filter" class="visually-hidden">
+        Filter by complexity
+    </label>
     <select id="complexity-filter">
         <option value="All">All Complexity</option>
         <option value="1">1</option>
@@ -91,7 +103,108 @@
         <option value="3">3</option>
     </select>
 
+
+    <div class="filter-button-section">
+    <h4 class="text-center">Attack Type</h4>
+
+        <div class="btn-group" role="group" aria-label="Attack type">
+
+            <input
+                type="checkbox"
+                class="btn-check attack-type-check"
+                id="attack-melee"
+                value="Melee"
+                autocomplete="off">
+
+            <label class="btn btn-outline-secondary" for="attack-melee">
+                Melee
+            </label>
+
+
+            <input
+                type="checkbox"
+                class="btn-check attack-type-check"
+                id="attack-ranged"
+                value="Ranged"
+                autocomplete="off">
+
+            <label class="btn btn-outline-secondary" for="attack-ranged">
+                Ranged
+            </label>
+
         </div>
+    </div>
+
+    <div class="filter-button-section">
+    <h4 class="text-center">Roles</h4>
+
+    <div class="roles-buttons">
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-carry" value="Carry" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-carry">
+            Carry
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-nuker" value="Nuker" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-nuker">
+            Nuker
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-disabler" value="Disabler" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-disabler">
+            Disabler
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-support" value="Support" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-support">
+            Support
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-initiator" value="Initiator" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-initiator">
+            Initiator
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-durable" value="Durable" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-durable">
+            Durable
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-escape" value="Escape" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-escape">
+            Escape
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-pusher" value="Pusher" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-pusher">
+            Pusher
+        </label>
+
+        <input type="checkbox" class="btn-check role-check"
+               id="role-jungler" value="Jungler" autocomplete="off">
+        <label class="btn btn-outline-danger" for="role-jungler">
+            Jungler
+        </label>
+
+    </div>
+
+        <button
+            type="button"
+            id="clear-roles"
+            class="btn btn-sm btn-secondary mt-2">
+            Clear Roles
+        </button>
+    </div>
+
+</div>
         <div id="hero-sections"></div>
     </main>
 <footer>

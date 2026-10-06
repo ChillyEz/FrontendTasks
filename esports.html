@@ -5,6 +5,7 @@
     <title>Esports</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/icon.png">
     <script src="script.js"  type="module" defer></script>
@@ -12,61 +13,212 @@
 <body>
     <div class="page-shell">
 <header>
-        <a href="index.html" class="logo">
-            <img src="images/icon.png" alt="Logo" class="logo"></img>
-        </a>
-        <div class="logo"><h1>Dota 2 Wikitionary</h1></div>
-</header>
+            <div class="site-brand">
+                <a href="index.html">
+                    <img src="images/icon.png" alt="Logo" class="logo">
+                </a>
+                <div id="site-name">
+                    <h1>Dota 2</h1>
+                    <h1> Wikitionary</h1>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark bootstrap-navbar ">
+            <div class="container">
+                
+
+            <button 
+                class="navbar-toggler ms-auto" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <ul class="navbar-nav mb-lg-0 w-100 align-items-end">
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 py-2 d-flex align-items-center justify-content-center" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="heroes.html">Heroes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="items.html">Items</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-2 py-2 d-flex align-items-center justify-content-center" href="esports.html">Esports</a>
+                    </li>
+                </ul>
+                <form class="d-flex justify-content-end" id="search-form" role="search">
+                    <input
+                        class="form-control me-2"
+                        id="search-input"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                </div>
+            </div>
+        </nav>
+    </header>
 
 <div class="overlay"></div>
-    <aside>
-        <h2>Sidebar</h2>
-        <nav class="navbar">
-            <div class="logo">Dota 2 Wikitionary</div>
-            <a href="index.html">Home</a>
-            <a href="heroes.html">Heroes</a>
-            <a href="items.html">Items</a>
-            <a href="map.html">Map</a>
-            <a href="esports.html">Esports</a>
-        </nav>
-    </aside>
-
     <main>
-        <h2>The International Winners</h2>
-        <table class="esports-table">
-            <tr>
-                <th>Year</th>
-                <th>Winner</th>
-                <th>Prize Pool</th>
-            </tr>
-            <tr>
-                <td>2026</td>
-                <td>Team Spirit</td>
-                <td>3 453 129 $</td>
-            </tr>
-            <tr>
-                <td>2025</td>
-                <td>Team Falcons</td>
-                <td>2 682 501 $</td>
-            </tr>
-            <tr>
-                <td>2024</td>
-                <td>Team Liquid</td>
-                <td>2 572 906 $</td>
-            </tr>
-            <tr>
-                <td>2023</td>
-                <td colspan="2">The dev will fill this table later</td>
-            </tr>
-        </table>
+        <h2 class="text-center">The International Winners</h2>
+        <div class="container">
+        <div id="tiCarousel" class="carousel slide">
+            
+            <div class="carousel-indicators">
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"></button>
+
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="5"
+                    aria-label="Slide 6"></button>
+
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="6"
+                    aria-label="Slide 7"></button>
+                
+
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="7"
+                    aria-label="Slide 8"></button>
+                    
+                <button type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide-to="8"
+                    aria-label="Slide 9"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/Esports/TI2026.jpg" class="d-block w-100" alt="TI-Winner-2026">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2025.jpg" class="d-block w-100" alt="TI-Winner-2025">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2024.jpg" class="d-block w-100" alt="TI-Winner-2024">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2023.jpg" class="d-block w-100" alt="TI-Winner-2023">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2022.jpg" class="d-block w-100" alt="TI-Winner-2022">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2021.jpg" class="d-block w-100" alt="TI-Winner-2021">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2019.jpg" class="d-block w-100" alt="TI-Winner-2019">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2018.jpg" class="d-block w-100" alt="TI-Winner-2018">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Esports/TI2017.jpg" class="d-block w-100" alt="TI-Winner-2017">
+                </div>
+            </div>
+
+            <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previuos</span>
+            </button>
+
+            <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#tiCarousel"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+        </div>
+
+        <h2 class="text-center  mt-5 mb-3">Notable TI Champions</h2>
+            <div class="container card-group">
+                <div class="card bg-dark">
+                    <img class="card-img-top mt-2" src="images/Esports/Team-Spirit-logo.webp" alt="Team Spirit">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Team Spirit</h5>
+                        <p class="card-text text-white text-center">
+                            First ever Three-times TI champions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card bg-dark">
+                    <img class="card-img-top mt-2" src="images/Esports/Team-OG-logo.webp" alt="Team OG">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Team OG</h5>
+                        <p class="card-text text-white text-center">
+                            The only team to win two TIs with the exact same roster.
+                        </p>
+                    </div>
+                </div>
+                <div class="card bg-dark">
+                    <img class="card-img-top mt-2" src="images/Esports/Team-Liquid-logo.webp" alt="Team Liquid">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Team Liquid</h5>
+                        <p class="card-text text-white text-center">
+                            First ever Two TI champions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
     </main>
 <footer>
     <p>&copy; 2026 My Website. All rights reserved. Amir Baiseitov</p>
 </footer>
 </div>
-
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
 
 </html>
